@@ -6,10 +6,7 @@ class Token:
         self.key = key
 
     def decrypt(self):
-        return self.key.__fernet.decrypt(self.token)
-
-    def __str__(self):
-        return self.token
+        return self.key.fernet.decrypt(self.token)
 
 class Key:
 
@@ -20,14 +17,14 @@ class Key:
 
         if isinstance(key, str):
             self.key = key
-            self.__fernet = Fernet(key)
+            self.fernet = Fernet(key)
 
         elif key is None:
             self.key = Fernet.generate_key()
-            self.__fernet = Fernet(self.key)
+            self.fernet = Fernet(self.key)
         
-    def encrypt(self, data):
+    def encrypt(self, data:str):
         return Token(
             key = self,
-            token = self.__fernet.encrypt(data)
+            token = self.fernet.encrypt(data.encode())
         )

@@ -1,43 +1,27 @@
-QuickSocket
+QuickFernet
 -
 
-A simple wrapper for socket to easily build servers and clients.
+A simple wrapper for cryptography.fernet to easily encrypt and decrypt strings.
 
 ---
 
-Key Features:
--
-- Converts all data to bytes using [dill](https://github.com/uqfoundation/dill)
-- Sends the length of the data as a header automatically
----
-`pip install git+https://github.com/MineFartS/QuickSocket`
+`pip install QuickFernet`
 
 ---
 
 Example Usage:
 -
 ```
-import quicksocket
+from quickfernet import Key
 
-# ======================================
-# |             Server                 |
-# ======================================
+key = Key()
 
-h = quicksocket.host(443)
+t = Key.encrypt('test123')
 
-for conn in h.listen():
-    data = conn.recv()
-    # do something with data
-    conn.send(data)
+# Get Original String
+t.decrypt()
 
-# ======================================
-# |              Client                |
-# ======================================
+# Get Raw Token String
+t.token
 
-c = quicksocket.client('127.0.0.1', 443)
-
-data = 123
-
-c.send(data)
-resp = c.recv()
 ```
