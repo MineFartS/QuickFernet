@@ -6,7 +6,7 @@ class Token:
         self.key = key
 
     def decrypt(self):
-        return self.key.fernet.decrypt(self.token)
+        return self.key.fernet.decrypt(self.token).decode()
 
 class Key:
 

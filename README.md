@@ -14,9 +14,14 @@ Example Usage:
 ```
 from quickfernet import Key
 
+# Declare String
+string = 'hello world'
+
+# Create New Key Object
 key = Key()
 
-t = Key.encrypt('test123')
+# Create New Token Object for String
+t = key.encrypt(string)
 
 # Get Original String
 t.decrypt()
